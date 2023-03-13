@@ -1,4 +1,12 @@
-__pycache__
+# db
 db.sqlite3
+
+# Cache
 .history
+__pycache__
+
+# env
 /.env*
+
+# Mac
+.DS_Store
