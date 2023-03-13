@@ -7,4 +7,6 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('chat/', include('chat.urls')),
+    path('user/', include('user.urls')),
 ]
