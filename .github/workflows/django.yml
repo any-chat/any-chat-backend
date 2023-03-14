@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  DEBUG: ${{ vars.DEBUG }}
+  ENV: ${{ vars.ENV }}
+
 jobs:
   build:
 
@@ -22,12 +26,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        CHATGPT_API_KEY: ${{ secrets.CHATGPT_API_KEY }}
+        JWT_EXP: ${{ secrets.JWT_EXP }}
       run: |
-        echo "DEBUG=${{ secrets.DEBUG }}" >> .env
-        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
-        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-        echo "CHATGPT_API_KEY=${{ secrets.CHATGPT_API_KEY }}" >> .env
-        echo "JWT_EXP=${{ secrets.JWT_EXP }}" >> .env
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
