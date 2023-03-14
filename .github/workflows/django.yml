@@ -28,8 +28,6 @@ jobs:
         echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
         echo "CHATGPT_API_KEY=${{ secrets.CHATGPT_API_KEY }}" >> .env
         echo "JWT_EXP=${{ secrets.JWT_EXP }}" >> .env
-        echo "${{ secrets.JWT_EXP }}"
-        echo "${{ JWT_EXP }}"
         cat .env
         python -m pip install --upgrade pip
         pip install -r requirements.txt
